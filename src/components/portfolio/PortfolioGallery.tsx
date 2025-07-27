@@ -6,15 +6,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 const portfolioItems = [
-  { id: 1, src: 'https://placehold.co/800x1000.png', alt: 'Fine line floral tattoo on forearm', style: 'Fine Line', hint: 'floral tattoo' },
-  { id: 2, src: 'https://placehold.co/800x1000.png', alt: 'Geometric wolf head tattoo on thigh', style: 'Geometric', hint: 'geometric wolf' },
-  { id: 3, src: 'https://placehold.co/800x1000.png', alt: 'Japanese style dragon sleeve', style: 'Japanese', hint: 'dragon sleeve' },
-  { id: 4, src: 'https://placehold.co/800x1000.png', alt: 'Blackwork skull and roses tattoo', style: 'Blackwork', hint: 'skull roses' },
-  { id: 5, src: 'https://placehold.co/800x1000.png', alt: 'Realistic lion portrait on chest', style: 'Realism', hint: 'lion portrait' },
-  { id: 6, src: 'https://placehold.co/800x1000.png', alt: 'American traditional eagle tattoo', style: 'Traditional', hint: 'eagle tattoo' },
-  { id: 7, src: 'https://placehold.co/800x1000.png', alt: 'Watercolor style hummingbird tattoo', style: 'Watercolor', hint: 'hummingbird tattoo' },
-  { id: 8, src: 'https://placehold.co/800x1000.png', alt: 'Intricate mandala back piece', style: 'Mandala', hint: 'mandala back' },
-  { id: 9, src: 'https://placehold.co/800x1000.png', alt: 'Minimalist wave tattoo on ankle', style: 'Minimalist', hint: 'wave tattoo' },
+  { id: 1, src: 'https://placehold.co/800x1000.png', alt: 'A vibrant watercolor tattoo of a phoenix on a back', style: 'Watercolor', hint: 'phoenix tattoo' },
+  { id: 2, src: 'https://placehold.co/800x1000.png', alt: 'A detailed black and grey portrait of a woman', style: 'Realism', hint: 'portrait tattoo' },
+  { id: 3, src: 'https://placehold.co/800x1000.png', alt: 'A traditional Japanese dragon sleeve tattoo in full color', style: 'Japanese', hint: 'dragon sleeve' },
+  { id: 4, src: 'https://placehold.co/800x1000.png', alt: 'A bold blackwork tattoo of a geometric stag', style: 'Blackwork', hint: 'geometric stag' },
+  { id: 5, src: 'https://placehold.co/800x1000.png', alt: 'A fine line tattoo of a constellation on an arm', style: 'Fine Line', hint: 'constellation tattoo' },
+  { id: 6, src: 'https://placehold.co/800x1000.png', alt: 'A classic American traditional tattoo of a ship', style: 'Traditional', hint: 'ship tattoo' },
+  { id: 7, src: 'https://placehold.co/800x1000.png', alt: 'A surrealist tattoo of an eye with clouds', style: 'Surrealism', hint: 'surreal eye' },
+  { id: 8, src: 'https://placehold.co/800x1000.png', alt: 'An intricate mandala tattoo on a thigh', style: 'Mandala', hint: 'mandala tattoo' },
+  { id: 9, src: 'https://placehold.co/800x1000.png', alt: 'A biomechanical tattoo covering a shoulder', style: 'Biomechanical', hint: 'biomechanical tattoo' },
 ];
 
 export function PortfolioGallery() {
