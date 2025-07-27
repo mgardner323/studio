@@ -7,9 +7,9 @@ import { Brush, Calendar, Clapperboard } from 'lucide-react';
 
 export default function Home() {
   const featuredWork = [
-    { src: 'https://placehold.co/600x800.png', alt: 'A black and grey tattoo of a wolf on a forearm', hint: 'wolf tattoo' },
-    { src: 'https://placehold.co/600x800.png', alt: 'A colorful floral tattoo on a shoulder', hint: 'floral tattoo' },
-    { src: 'https://placehold.co/600x800.png', alt: 'A geometric pattern tattoo on a back', hint: 'geometric tattoo' },
+    { src: 'https://placehold.co/600x800.png', alt: 'A detailed black and grey realism tattoo of a lion on a forearm.', hint: 'lion tattoo' },
+    { src: 'https://placehold.co/600x800.png', alt: 'A vibrant American traditional tattoo of a rose and dagger.', hint: 'traditional rose' },
+    { src: 'https://placehold.co/600x800.png', alt: 'An intricate geometric dotwork tattoo on a back shoulder.', hint: 'geometric dotwork' },
   ];
 
   return (
