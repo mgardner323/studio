@@ -28,11 +28,11 @@ export default function AboutPage() {
           <Card className="overflow-hidden shadow-lg">
             <Image
               src="https://placehold.co/800x600.png"
-              alt="A close-up shot of a tattoo artist's hands working on a client's arm."
+              alt="A stylish and clean tattoo studio interior with a tattoo bed and equipment."
               width={800}
               height={600}
               className="object-cover w-full h-full"
-              data-ai-hint="tattoo artist working"
+              data-ai-hint="tattoo studio"
             />
           </Card>
         </div>
