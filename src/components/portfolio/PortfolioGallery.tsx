@@ -10,10 +10,10 @@ const portfolioItems = [
   { id: 2, src: 'https://placehold.co/800x1000.png', alt: 'A detailed black and grey portrait of a woman with flowers in her hair', style: 'Realism', hint: 'realism portrait tattoo' },
   { id: 3, src: 'https://placehold.co/800x1000.png', alt: 'A traditional Japanese dragon sleeve tattoo in full color', style: 'Japanese', hint: 'japanese dragon tattoo' },
   { id: 4, src: 'https://placehold.co/800x1000.png', alt: 'A bold blackwork tattoo of a geometric stag on a chest', style: 'Blackwork', hint: 'blackwork stag tattoo' },
-  { id: 5, src: 'https://placehold.co/800x1000.png', alt: 'A fine line tattoo of a solar system on an arm', style: 'Fine Line', hint: 'fine line solar system' },
+  { id: 5, src: 'https://placehold.co/800x1000.png', alt: 'A fine line tattoo of a solar system on an arm', style: 'Fine Line', hint: 'fine line solar' },
   { id: 6, src: 'https://placehold.co/800x1000.png', alt: 'A classic American traditional tattoo of a ship on the high seas', style: 'Traditional', hint: 'traditional ship tattoo' },
-  { id: 7, src: 'https://placehold.co/800x1000.png', alt: 'A surrealist tattoo of an eye morphing into a galaxy', style: 'Surrealism', hint: 'surrealism eye tattoo' },
-  { id: 8, src: 'https://placehold.co/800x1000.png', alt: 'An intricate mandala tattoo on a thigh with dotwork shading', style: 'Mandala', hint: 'mandala tattoo' },
+  { id: 7, src: 'https://placehold.co/800x1000.png', alt: 'A surrealist tattoo of an eye morphing into a galaxy', style: 'Surrealism', hint: 'surrealism eye galaxy' },
+  { id: 8, src: 'https://placehold.co/800x1000.png', alt: 'An intricate mandala tattoo on a thigh with dotwork shading', style: 'Mandala', hint: 'mandala tattoo thigh' },
   { id: 9, src: 'https://placehold.co/800x1000.png', alt: 'A biomechanical tattoo with exposed gears and wiring on a leg', style: 'Biomechanical', hint: 'biomechanical tattoo leg' },
 ];
 
