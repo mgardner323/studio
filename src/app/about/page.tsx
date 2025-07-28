@@ -32,7 +32,7 @@ export default function AboutPage() {
               width={800}
               height={600}
               className="object-cover w-full h-full"
-              data-ai-hint="tattoo artist hands"
+              data-ai-hint="tattoo artist working"
             />
           </Card>
         </div>
