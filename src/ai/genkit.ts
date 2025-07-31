@@ -1,7 +1,8 @@
-import {genkit} from 'genkit';
-import {googleAI} from '@genkit-ai/googleai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-export const ai = genkit({
-  plugins: [googleAI()],
-  model: 'googleai/gemini-2.0-flash',
-});
+const apiKey = process.env.GOOGLE_AI_API_KEY;
+if (!apiKey) {
+  throw new Error('GOOGLE_AI_API_KEY environment variable is required');
+}
+
+export const genAI = new GoogleGenerativeAI(apiKey);
