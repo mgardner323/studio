@@ -22,6 +22,7 @@ import { useToast } from '@/hooks/use-toast';
 import { tattooDesignGenerator, type TattooDesignGeneratorOutput } from '@/ai/flows/tattoo-design-generator';
 import Image from 'next/image';
 import { Loader2, Sparkles, UploadCloud, CheckCircle, AlertCircle } from 'lucide-react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const designFormSchema = z.object({
   description: z.string().min(10, { message: 'Please provide a more detailed description.' }),
@@ -46,6 +47,7 @@ const fileToDataURI = (file: File): Promise<string> => {
 
 export function DesignGeneratorForm() {
   const { toast } = useToast();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<TattooDesignGeneratorOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -57,14 +59,28 @@ export function DesignGeneratorForm() {
   });
   
   const onSubmit = async (data: DesignFormValues) => {
+    if (!executeRecaptcha) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "reCAPTCHA not available. Please try again.",
+      });
+      return;
+    }
+
     setIsLoading(true);
     setResult(null);
     setError(null);
     
     try {
+        // Execute reCAPTCHA
+        const token = await executeRecaptcha('design_generator_submit');
+        console.log("reCAPTCHA token:", token);
+
         const referenceImage = data.referenceImage[0];
         const imageDataURI = await fileToDataURI(referenceImage);
 
+        // Here you would verify the reCAPTCHA token on your backend before processing
         const aiResult = await tattooDesignGenerator({
             description: data.description,
             stylePreferences: data.stylePreferences,

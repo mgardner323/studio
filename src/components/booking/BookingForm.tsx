@@ -14,13 +14,16 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
 import { UploadCloud, CheckCircle } from 'lucide-react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 const bookingFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email." }),
+  artist: z.string({ required_error: "Please select an artist." }),
   description: z.string().min(10, { message: "Please provide a detailed description." }),
   placement: z.string().min(2, { message: "Please specify the placement." }),
   size: z.string().min(1, { message: "Please specify the approximate size." }),
@@ -29,8 +32,14 @@ const bookingFormSchema = z.object({
 
 type BookingFormValues = z.infer<typeof bookingFormSchema>;
 
+const artists = [
+  { value: "artist1", label: "Artist 1", email: "artist1@thestationink.com" },
+  { value: "artist2", label: "Artist 2", email: "artist2@thestationink.com" },
+];
+
 export function BookingForm() {
   const { toast } = useToast();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -40,6 +49,7 @@ export function BookingForm() {
     defaultValues: {
       name: "",
       email: "",
+      artist: "",
       description: "",
       placement: "",
       size: "",
@@ -47,24 +57,54 @@ export function BookingForm() {
   });
 
   const onSubmit = async (data: BookingFormValues) => {
-    setIsSubmitting(true);
-    // Simulate API call and Firebase Storage upload
-    console.log("Booking submission data:", data);
-    
-    // The referenceImage would be uploaded to Firebase Storage here.
-    // For this example, we'll just simulate a delay.
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    toast({
-      title: "Consultation Request Sent!",
-      description: "Thank you for your interest. We will get back to you within 2-3 business days.",
-    });
-    form.reset();
-    setFileName("");
-    if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+    if (!executeRecaptcha) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "reCAPTCHA not available. Please try again.",
+      });
+      return;
     }
-    setIsSubmitting(false);
+
+    setIsSubmitting(true);
+    
+    try {
+      // Execute reCAPTCHA
+      const token = await executeRecaptcha('booking_form_submit');
+      
+      // Get the selected artist's email
+      const selectedArtist = artists.find(artist => artist.value === data.artist);
+      const artistEmail = selectedArtist?.email || "contact@thestationink.com";
+      
+      // Simulate API call with reCAPTCHA token verification
+      console.log("Booking submission data:", data);
+      console.log("Selected artist email:", artistEmail);
+      console.log("reCAPTCHA token:", token);
+      
+      // Here you would verify the token on your backend
+      // The referenceImage would be uploaded to Firebase Storage here.
+      // For this example, we'll just simulate a delay.
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      toast({
+        title: "Consultation Request Sent!",
+        description: "Thank you for your interest. We will get back to you within 2-3 business days.",
+      });
+      form.reset();
+      setFileName("");
+      if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "There was an error submitting your request. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,6 +141,30 @@ export function BookingForm() {
               <FormControl>
                 <Input placeholder="jane.doe@example.com" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="artist"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Select Artist</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choose your preferred artist" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {artists.map(artist => (
+                    <SelectItem key={artist.value} value={artist.value}>
+                      {artist.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
